@@ -1,5 +1,4 @@
 Class = require 'libs.hump.class'
-anim8 = require 'libs.anim8'
 
 Paddle = Class {}
 
