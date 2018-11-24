@@ -23,16 +23,18 @@ end
 
 function gameLevel1:update(dt)
   if dt > 0.035 then return end
-  
+
   love.audio.play(bg_music)
-  
+
   if not ball.released then
     ball.x = paddle.x
     ball.y = paddle.y - 10
   end
-  
+
   paddle:update(dt)
   ball:update(dt)
+
+  ball:checkCollision(paddle)
 end
 
 function gameLevel1:draw()
@@ -44,6 +46,13 @@ end
 function gameLevel1:keypressed(key)
   if Gamestate.current() ~= pause and key == 'p' then
     Gamestate.push(pause)
+  end
+end
+
+function love.keyreleased(key)
+  -- body...
+  if key == 'space' then
+    ball.released = true
   end
 end
 
