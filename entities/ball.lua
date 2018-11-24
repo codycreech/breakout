@@ -5,6 +5,8 @@ Ball = Class {}
 function Ball:init(x, y, released)
   love.graphics.setDefaultFilter('nearest')
   self.img = love.graphics.newImage('assets/images/ball.png')
+  self.startX = x
+  self.startY = y
   self.x = x
   self.y = y
   self.w = self.img:getWidth()
@@ -44,14 +46,20 @@ end
 function Ball:checkCollision(paddle)
   --collides with top of screen
   if self.y < 0 then
-    self.speedY = -math.abs(self.speedY)
+    self.speedY = -self.speedY
   end
   --collides with paddle
   if (self.y + self.h) > paddle.y and
-  self.x > paddle.x and
-  (self.x + self.w) < (paddle.x + paddle.w)
+  self.x >= paddle.x and
+  (self.x + self.w) <= (paddle.x + paddle.w)
     then
-      self.speedY = math.abs(self.speedY)
+      self.speedY = -self.speedY
+  end
+  --collides with bottom of screen
+  if self.y > self.boundY + 100 then
+    self.x = self.startX
+    self.y = self.startY
+    self.released = false
   end
 end
 
