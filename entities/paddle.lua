@@ -44,8 +44,6 @@ end
 
 function Paddle:draw()
   love.graphics.draw(self.img, self.x, self.y, math.rad(0), 1.2, 1.2, self.w / 2, self.h / 2)
-  love.graphics.setColor(1,1,1)
-  love.graphics.circle('fill', self.x, self.y, 2)
 end
 
 return Paddle
