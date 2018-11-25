@@ -36,6 +36,10 @@ function gameLevel1:update(dt)
     ball.y = paddle.y - 10
   end
 
+  if ball.y > ball.boundY + 100 then
+    ball:reset()
+  end
+
   paddle:update(dt)
   ball:update(dt)
   walls.update(dt)

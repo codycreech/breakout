@@ -63,6 +63,12 @@ function Ball:rebound(shift_ball_x, shift_ball_y)
   end
 end
 
+function Ball:reset()
+  self.x = self.startX
+  self.y = self.startY
+  self.released = false
+end
+
 -- function Ball:checkCollision(paddle)
 --   --collides with top of screen
 --   if self.y < 0 then
